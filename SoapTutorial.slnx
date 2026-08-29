@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SoapWebServiceClient/SoapWebServiceClient.csproj" />
+  <Project Path="SoapWebServiceServer/SoapWebServiceServer.csproj" />
+</Solution>
