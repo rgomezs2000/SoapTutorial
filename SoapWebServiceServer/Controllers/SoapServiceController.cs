@@ -4,6 +4,8 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 using System.Threading.Tasks;
+using SoapWebServiceServer.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SoapWebServiceServer.Controllers
 {
@@ -15,13 +17,14 @@ namespace SoapWebServiceServer.Controllers
 
         public SoapServiceController()
         {
-           _productService = new ProductService();
+           _productService = new ProductService("");
         }
 
         /// <summary>
         /// Endpoint SOAP que expone el WSDL
         /// GET: /ProductService.asmx?wsdl
         /// </summary>
+        [HttpGet("ProductService.asmx")]
         public IActionResult GetWsdl(string wsdl = "")
         {
             if (string.IsNullOrEmpty(wsdl))
@@ -90,8 +93,15 @@ namespace SoapWebServiceServer.Controllers
                     //procesar segun la operacion
                     string soapResponse = operationName switch
                     {
-                        "GetProduct" => await HandleGetPr
+                        "GetProduct" => await HandleGetProduct(operation),
+                        "GetAllProduct" => await HandleGetAllProducts(operation),
+                        "CreateProduct" => await HandleCreateProduct(operation),
+                        "UpdateProduct" => await HandleUpdateProduct(operation),
+                        "DeleteProduct" => await HandleDeleteProduct(operation),
+                        _ => GenerateSoapFault("operacion no reconocida")
                     };
+
+                    return Content(soapResponse, "application/soap+xml; charset=utf-8");
                 }
             }catch(Exception ex)
             {
@@ -101,7 +111,7 @@ namespace SoapWebServiceServer.Controllers
 
         // ============ HANDLERS ============
 
-        private async Task<string> HandleGetProducts(XElement operation)
+        private async Task<string> HandleGetProduct(XElement operation)
         {
             try
             {
@@ -140,11 +150,128 @@ namespace SoapWebServiceServer.Controllers
         {
             try
             {
+                var response = await _productService.GetAllProductAsync();
+                string productsXml = string.Empty;
+                string xml = string.Empty;
+
+                foreach(var product in response.Products)
+                {
+                    productsXml += $@"
+        <tns:Product xmlns:tns=""http://productservice.example.com/2025"">
+            <tns:Id>{product.Id}</tns:Id>
+            <tns:Nombre>{product.Nombre}</tns:Nombre>
+            <tns:Descripcion>{product.Descripcion}</tns:Descripcion>
+            <tns:Precio>{product.Precio}</tns:Precio>
+            <tns:Stock>{product.Stock}</tns:Stock>
+        </tns:Product>";
+                }
+
+                xml = $@"
+    <tns:GetAllProductsResponse xmlns:tns=""http://productservice.example.com/2025"">
+        <tns:Success>true</tns:Success>
+        <tns:Total>{response.Total}</tns:Total>
+        {productsXml}
+        <tns:Message>{response.Message}</tns:Message>
+    </tns:GetAllProductsResponse>";
+
+                return GenerateSoapResponse(xml);
+            }
+            catch (Exception ex)
+            {
+                return GenerateSoapFault(ex.Message);
+            }
+        }
+
+
+        public async Task<string> HandleCreateProduct(XElement operation)
+        {
+            try
+            {
+                var ns = XNamespace.Get("http://productservice.example.com/2025");
+                var request = operation.Element(ns + "request");
+                string xml = string.Empty;
+
+                var createRequest = new CreateProductRequest
+                {
+                    Nombre = request.Element(ns + "Nombre")?.Value ?? "",
+                    Descripcion = request.Element(ns + "Descripcion")?.Value ?? "",
+                    Precio = double.Parse(request.Element(ns + "Precio")?.Value ?? "0"),
+                    Stock = int.Parse(request.Element(ns + "Stock")?.Value ?? "0")
+                };
+
+                var response = await _productService.CreateProductAsync(createRequest);
+
+                xml = $@"
+    <tns:CreateProductResponse xmlns:tns=""http://productservice.example.com/2025"">
+        <tns:Success>{response.Success.ToString().ToLower()}</tns:Success>
+        <tns:ProductId>{response.ProductId}</tns:ProductId>
+        <tns:Message>{response.Message}</tns:Message>
+    </tns:CreateProductResponse>";
+
+                return GenerateSoapResponse(xml);
+            }
+            catch(Exception ex)
+            {
+                return GenerateSoapFault(ex.Message);
+            }
+        }
+
+        private async Task<string> HandleUpdateProduct(XElement operation)
+        {
+            try
+            {
+                var ns = XNamespace.Get("http://productservice.example.com/2025");
+                var request = operation.Element(ns + "request");
+                string xml = string.Empty;
+
+                var updateRequest = new UpdateProductRequest
+                {
+                    Id = int.Parse(request?.Element(ns + "Id")?.Value ?? "0"),
+                    Nombre = request?.Element(ns + "Nombre")?.Value ?? "",
+                    Descripcion = request?.Element(ns + "Descipcion")?.Value ?? "",
+                    Precio = double.Parse(request?.Element(ns + "Precio")?.Value ?? "0"),
+                    Stock = int.Parse(request?.Element(ns + "Stock")?.Value ?? "0"),
+
+                };
+
+                var response = await _productService.UpdateProductAsync(updateRequest);
+
+                xml = $@"
+    <tns:UpdateProductResponse xmlns:tns=""http://productservice.example.com/2025"">
+        <tns:Success>{response.Success.ToString().ToLower()}</tns:Success>
+        <tns:Message>{response.Message}</tns:Message>
+    </tns:UpdateProductResponse>";
+
+                return GenerateSoapResponse(xml);
+
+            }
+            catch(Exception ex)
+            {
+                return GenerateSoapFault(ex.Message);
+            }
+        }
+
+        private async Task<string> HandleDeleteProduct(XElement operation)
+        {
+            try
+            {
+                var productIdElem = operation.Element(XName.Get("productId"), "http://productservice.example.com/2025");
+                int productid = int.Parse(productIdElem?.Value ?? "0");
+
+                var response = await _productService.DeleteProductAsync(productid);
+
+                string xml = $@"
+    <tns:DeleteProductResponse xmlns:tns=""http://productservice.example.com/2025"">
+        <tns:Success>{response.Success.ToString().ToLower()}</tns:Success>
+        <tns:Message>{response.Message}</tns:Message>
+    </tns:DeleteProductResponse>";
+
+                return GenerateSoapResponse(xml);
 
             }
             catch (Exception ex)
             {
-
+                return GenerateSoapFault(ex.Message);
             }
         }
 
