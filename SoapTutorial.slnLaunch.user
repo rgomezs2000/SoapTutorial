@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "SoapWebServiceClient\\SoapWebServiceClient.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "SoapWebServiceServer\\SoapWebServiceServer.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

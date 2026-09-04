@@ -17,7 +17,7 @@ namespace SoapWebServiceServer.Controllers
 
         public SoapServiceController()
         {
-           _productService = new ProductService("");
+           _productService = new ProductService();
         }
 
         /// <summary>
@@ -25,11 +25,17 @@ namespace SoapWebServiceServer.Controllers
         /// GET: /ProductService.asmx?wsdl
         /// </summary>
         [HttpGet("ProductService.asmx")]
-        public IActionResult GetWsdl(string wsdl = "")
-        {
-            if (string.IsNullOrEmpty(wsdl))
-            {
-                var html = @"
+public IActionResult GetWsdl([FromQuery] string wsdl = "")
+{
+    // ✅ VERIFICAR SI EXISTE EL PARÁMETRO EN LA QUERY STRING
+    if (Request.Query.ContainsKey("wsdl"))
+    {
+        var wsdlContent = GenerateWsdl();
+        return Content(wsdlContent, "application/wsdl+xml; charset=utf-8");
+    }
+
+    // Si no, retornar el HTML
+    var html = @"
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,19 +55,15 @@ namespace SoapWebServiceServer.Controllers
     </ul>
 </body>
 </html>";
-                return Content(html, "text/html; charset=utf-8");
-            }
-
-            //Generar el WSDL
-            var wsdlContent = GenerateWsdl();
-            return Content(wsdlContent, "application/wsdl+xml; charset=utf-8");
-        }
+    return Content(html, "text/html; charset=utf-8");
+}
 
         /// <summary>
         /// Endpoint SOAP que procesa las solicitudes
         /// POST: /ProductService.asmx
         /// </summary>
         [HttpPost("ProductService.asmx")]
+        [Consumes("application/soap+xml", "text/xml")]
         public async Task<IActionResult> ProcessSoapRequest()
         {
             try
@@ -105,7 +107,7 @@ namespace SoapWebServiceServer.Controllers
                 }
             }catch(Exception ex)
             {
-
+                return Content(GenerateSoapFault($"Error: {ex.Message}"), "application/soap+xml; charset=utf-8");
             }
         }
 
@@ -255,7 +257,7 @@ namespace SoapWebServiceServer.Controllers
         {
             try
             {
-                var productIdElem = operation.Element(XName.Get("productId"), "http://productservice.example.com/2025");
+                var productIdElem = operation.Element(XName.Get("productId", "http://productservice.example.com/2025"));
                 int productid = int.Parse(productIdElem?.Value ?? "0");
 
                 var response = await _productService.DeleteProductAsync(productid);
@@ -305,7 +307,7 @@ namespace SoapWebServiceServer.Controllers
 
         private string GenerateWsdl()
         {
-            string xml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <definitions xmlns=""http://schemas.xmlsoap.org/wsdl/"" 
              xmlns:soap=""http://schemas.xmlsoap.org/wsdl/soap/"" 
              xmlns:tns=""http://productservice.example.com/2025"" 
@@ -322,22 +324,25 @@ namespace SoapWebServiceServer.Controllers
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name=""GetProductResponse"">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name=""Success"" type=""xsd:boolean""/>
+            <xsd:element name=""ProductId"" type=""xsd:int"" minOccurs=""0""/>
+            <xsd:element name=""Nombre"" type=""xsd:string"" minOccurs=""0""/>
+            <xsd:element name=""Message"" type=""xsd:string"" minOccurs=""0""/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name=""GetAllProducts"">
         <xsd:complexType/>
       </xsd:element>
-      <xsd:element name=""CreateProduct"">
+      <xsd:element name=""GetAllProductsResponse"">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name=""request"">
-              <xsd:complexType>
-                <xsd:sequence>
-                  <xsd:element name=""Nombre"" type=""xsd:string""/>
-                  <xsd:element name=""Descripcion"" type=""xsd:string""/>
-                  <xsd:element name=""Precio"" type=""xsd:double""/>
-                  <xsd:element name=""Stock"" type=""xsd:int""/>
-                </xsd:sequence>
-              </xsd:complexType>
-            </xsd:element>
+            <xsd:element name=""Success"" type=""xsd:boolean""/>
+            <xsd:element name=""Total"" type=""xsd:int""/>
+            <xsd:element name=""Message"" type=""xsd:string"" minOccurs=""0""/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -348,7 +353,13 @@ namespace SoapWebServiceServer.Controllers
     <part name=""parameters"" element=""tns:GetProduct""/>
   </message>
   <message name=""GetProductResponse"">
-    <part name=""parameters"" type=""xsd:string""/>
+    <part name=""parameters"" element=""tns:GetProductResponse""/>
+  </message>
+  <message name=""GetAllProductsRequest"">
+    <part name=""parameters"" element=""tns:GetAllProducts""/>
+  </message>
+  <message name=""GetAllProductsResponse"">
+    <part name=""parameters"" element=""tns:GetAllProductsResponse""/>
   </message>
 
   <portType name=""ProductServicePort"">
@@ -356,12 +367,21 @@ namespace SoapWebServiceServer.Controllers
       <input message=""tns:GetProductRequest""/>
       <output message=""tns:GetProductResponse""/>
     </operation>
+    <operation name=""GetAllProducts"">
+      <input message=""tns:GetAllProductsRequest""/>
+      <output message=""tns:GetAllProductsResponse""/>
+    </operation>
   </portType>
 
   <binding name=""ProductServiceBinding"" type=""tns:ProductServicePort"">
     <soap:binding style=""document"" transport=""http://schemas.xmlsoap.org/soap/http""/>
     <operation name=""GetProduct"">
-      <soap:operation soapAction=""GetProduct""/>
+      <soap:operation soapAction=""http://productservice.example.com/2025/GetProduct""/>
+      <input><soap:body use=""literal""/></input>
+      <output><soap:body use=""literal""/></output>
+    </operation>
+    <operation name=""GetAllProducts"">
+      <soap:operation soapAction=""http://productservice.example.com/2025/GetAllProducts""/>
       <input><soap:body use=""literal""/></input>
       <output><soap:body use=""literal""/></output>
     </operation>
