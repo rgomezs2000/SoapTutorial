@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SoapWebServiceClient.Services;
-using System.Threading.Tasks;
 using SoapWebServiceClient.Models;
-using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 
 namespace SoapWebServiceClient.Controllers
 {
@@ -25,12 +23,9 @@ namespace SoapWebServiceClient.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
         {
-            var response = await _soapClient.GetAllProductsAsync();
-
-            return Ok(new
-            {
-                xmlResponse = response
-            });
+            var xmlResponse = await _soapClient.GetAllProductsAsync();
+            var jsonResponse = SoapXmlParser.ParseGetAllProducts(xmlResponse);
+            return Ok(jsonResponse);
         }
 
         /// <summary>
@@ -40,42 +35,52 @@ namespace SoapWebServiceClient.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var response = await _soapClient.GetProductAsync(id);
-
-            return Ok(new
-            {
-                xmlResponse = response
-            });
+            var xmlResponse = await _soapClient.GetProductAsync(id);
+            var jsonResponse = SoapXmlParser.ParseGetProduct(xmlResponse);
+            return Ok(jsonResponse);
         }
 
         /// <summary>
-        /// Crea un producto (consumiendo SOAP con Flurl)
+        /// Crea un nuevo producto (consumiendo SOAP con Flurl)
         /// POST: /api/products
+        /// Body: { "nombre": "...", "descripcion": "...", "precio": 0, "stock": 0 }
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request)
         {
-            var response = await _soapClient.CreateProductAsync(request.Nombre, request.Descripcion, request.Precio, request.Stock);
+            if (request == null)
+                return BadRequest("Solicitud inválida");
 
-            return Ok(new
-            {
-                xmlResponse = response
-            });
+            var xmlResponse = await _soapClient.CreateProductAsync(
+                request.Nombre,
+                request.Descripcion,
+                request.Precio,
+                request.Stock
+            );
+            var jsonResponse = SoapXmlParser.ParseCreateProduct(xmlResponse);
+            return Ok(jsonResponse);
         }
 
         /// <summary>
-        /// Actualiza un producto (consumiendo SOAP con Flurl)
+        /// Actualiza un producto existente (consumiendo SOAP con Flurl)
         /// PUT: /api/products
+        /// Body: { "id": 1, "nombre": "...", "descripcion": "...", "precio": 0, "stock": 0 }
         /// </summary>
         [HttpPut]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequest request)
         {
-            var response = await _soapClient.UpdateProductAsync(request.Id, request.Nombre, request.Descripcion, request.Precio, request.Stock);
+            if (request == null || request.Id <= 0)
+                return BadRequest("ID de producto inválido");
 
-            return Ok(new
-            {
-                xmlResponse = response
-            });
+            var xmlResponse = await _soapClient.UpdateProductAsync(
+                request.Id,
+                request.Nombre,
+                request.Descripcion,
+                request.Precio,
+                request.Stock
+            );
+            var jsonResponse = SoapXmlParser.ParseUpdateProduct(xmlResponse);
+            return Ok(jsonResponse);
         }
 
         /// <summary>
@@ -85,12 +90,12 @@ namespace SoapWebServiceClient.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var response = await _soapClient.DeleteProductAsync(id);
+            if (id <= 0)
+                return BadRequest("ID de producto inválido");
 
-            return Ok(new
-            {
-                xmlResponse = response
-            });
+            var xmlResponse = await _soapClient.DeleteProductAsync(id);
+            var jsonResponse = SoapXmlParser.ParseDeleteProduct(xmlResponse);
+            return Ok(jsonResponse);
         }
     }
 }

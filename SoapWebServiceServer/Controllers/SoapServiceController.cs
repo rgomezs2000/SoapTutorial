@@ -96,7 +96,7 @@ public IActionResult GetWsdl([FromQuery] string wsdl = "")
                     string soapResponse = operationName switch
                     {
                         "GetProduct" => await HandleGetProduct(operation),
-                        "GetAllProduct" => await HandleGetAllProducts(operation),
+                        "GetAllProducts" => await HandleGetAllProducts(operation),
                         "CreateProduct" => await HandleCreateProduct(operation),
                         "UpdateProduct" => await HandleUpdateProduct(operation),
                         "DeleteProduct" => await HandleDeleteProduct(operation),
@@ -154,12 +154,11 @@ public IActionResult GetWsdl([FromQuery] string wsdl = "")
             {
                 var response = await _productService.GetAllProductAsync();
                 string productsXml = string.Empty;
-                string xml = string.Empty;
 
-                foreach(var product in response.Products)
+                foreach (var product in response.Products)
                 {
                     productsXml += $@"
-        <tns:Product xmlns:tns=""http://productservice.example.com/2025"">
+        <tns:Product>
             <tns:Id>{product.Id}</tns:Id>
             <tns:Nombre>{product.Nombre}</tns:Nombre>
             <tns:Descripcion>{product.Descripcion}</tns:Descripcion>
@@ -168,7 +167,7 @@ public IActionResult GetWsdl([FromQuery] string wsdl = "")
         </tns:Product>";
                 }
 
-                xml = $@"
+                string xml = $@"
     <tns:GetAllProductsResponse xmlns:tns=""http://productservice.example.com/2025"">
         <tns:Success>true</tns:Success>
         <tns:Total>{response.Total}</tns:Total>

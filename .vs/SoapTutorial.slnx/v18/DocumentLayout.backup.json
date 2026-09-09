@@ -1,0 +1,167 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\services\\soapxmlparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\services\\soapxmlparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceserver\\controllers\\soapservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|solutionrelative:soapwebserviceserver\\controllers\\soapservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceserver\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|solutionrelative:soapwebserviceserver\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\services\\productsoapclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\services\\productsoapclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\models\\updateproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\models\\updateproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\models\\createproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\models\\createproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceclient\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D04340FD-1184-F28A-5176-D10A9D94286C}|SoapWebServiceClient\\SoapWebServiceClient.csproj|solutionrelative:soapwebserviceclient\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|c:\\users\\usuario\\source\\repos\\soaptutorial\\soapwebserviceserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F0BE6FC-0AB3-EF73-4517-C3C8D81FC14D}|SoapWebServiceServer\\SoapWebServiceServer.csproj|solutionrelative:soapwebserviceserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SoapXmlParser.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Services\\SoapXmlParser.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Services\\SoapXmlParser.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Services\\SoapXmlParser.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Services\\SoapXmlParser.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAqwJAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T15:06:46.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceServer\\Services\\ProductService.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Services\\ProductService.cs",
+              "RelativeToolTip": "SoapWebServiceServer\\Services\\ProductService.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T12:53:08.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UpdateProductRequest.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Models\\UpdateProductRequest.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Models\\UpdateProductRequest.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Models\\UpdateProductRequest.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Models\\UpdateProductRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T20:08:24.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CreateProductRequest.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Models\\CreateProductRequest.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Models\\CreateProductRequest.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Models\\CreateProductRequest.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Models\\CreateProductRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T20:00:42.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAADgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T19:30:49.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SoapServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Controllers\\SoapServiceController.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceServer\\Controllers\\SoapServiceController.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Controllers\\SoapServiceController.cs",
+              "RelativeToolTip": "SoapWebServiceServer\\Controllers\\SoapServiceController.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAAAJgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T16:03:47.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Program.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceServer\\Program.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceServer\\Program.cs",
+              "RelativeToolTip": "SoapWebServiceServer\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-02T15:59:29.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductSoapClient.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Services\\ProductSoapClient.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Services\\ProductSoapClient.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Services\\ProductSoapClient.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Services\\ProductSoapClient.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T18:16:41.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Program.cs",
+              "RelativeDocumentMoniker": "SoapWebServiceClient\\Program.cs",
+              "ToolTip": "C:\\Users\\usuario\\source\\repos\\SoapTutorial\\SoapWebServiceClient\\Program.cs",
+              "RelativeToolTip": "SoapWebServiceClient\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T17:49:37.35Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
